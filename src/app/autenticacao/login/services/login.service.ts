@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment as env } from 'src/environments/environment';
+
+import { Login } from '../';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginService {
+
+  private readonly PATH: string = 'auth';
+
+  constructor(private http: HttpClient) { }
+
+  logar(login: Login): Observable<any> {
+    console.log(env.baseUrl + this.PATH, login);
+    return this.http.post(env.baseUrl + this.PATH, login);
+  }
+}
