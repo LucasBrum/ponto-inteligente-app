@@ -5,12 +5,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+
 import { 
   LoginModule, 
   LoginRoutingModule,
-  CadastroPjModule
+  CadastroPjModule,
+  CadastroPjRoutingModule
 } from './autenticacao';
+
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import {
     LoginModule,
     LoginRoutingModule,
     CadastroPjModule,
+    CadastroPjRoutingModule,
 
     /* O AppRoutingModule deve ser o último dos imports, 
     pois ele é responsável por carregar todas as rodas
