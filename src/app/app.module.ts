@@ -5,8 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
-import { LoginModule, LoginRoutingModule } from './autenticacao';
 import { AppRoutingModule } from './app-routing.module';
+import { 
+  LoginModule, 
+  LoginRoutingModule,
+  CadastroPjModule
+} from './autenticacao';
 
 @NgModule({
   declarations: [
@@ -18,8 +22,12 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     LoginModule,
     LoginRoutingModule,
+    CadastroPjModule,
 
-    AppRoutingModule /* O AppRoutingModule deve ser o último dos imports*/
+    /* O AppRoutingModule deve ser o último dos imports, 
+    pois ele é responsável por carregar todas as rodas
+    */
+    AppRoutingModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
