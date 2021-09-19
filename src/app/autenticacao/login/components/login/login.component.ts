@@ -43,20 +43,17 @@ export class LoginComponent implements OnInit {
         this.loginServive.logar(login)
             .subscribe( // método de escuta para lidar com o Observable, vai ficar aguardando o retorno da requisição do servidor.
                 data => { // data é o retorno do servidor
-                    console.log(JSON.stringify(data));
                     // armazena o token no localStorage do navegador, pois será utilizado entre as requisições
                     localStorage['token'] = data['data']['token']; 
                     const usuarioData = JSON.parse(
                         atob(data['data']['token'].split('.')[1]));
-                        console.log(JSON.stringify(usuarioData));
                         if(usuarioData['role'] == 'ROLE_ADMIN') {
-                            alert('Deve redirecionar para a página de admin');
+                           this.router.navigate(['/admin'])
                         } else {
-                            alert('Deve redirecionar para a página de funcionário');
+                            this.router.navigate(['/funcionario']);
                         }
                     },
                     err => {
-                        console.log(JSON.stringify(err));
                         let msg: string = "Tente novamente em instantes.";
                         if (err['status'] == 401) {
                             msg = "Email/senha inválido(s)."
