@@ -4,21 +4,26 @@ import { CommonModule } from '@angular/common';
 
 import { MascaraDirective } from './directives/mascara.directive';
 import { CadastrarPjService } from './../autenticacao/cadastro-pj/services';
-
+import { PtBrMatPaginatorIntl, TipoPipe, DataPipe } from './';
 
 
 @NgModule({
   declarations: [
-    MascaraDirective
+    MascaraDirective,
+    TipoPipe,
+    DataPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    MascaraDirective
+    MascaraDirective,
+    TipoPipe,
+    DataPipe
   ],
   providers: [
-    CadastrarPjService
+    CadastrarPjService,
+    PtBrMatPaginatorIntl
   ]
 })
 export class SharedModule { }

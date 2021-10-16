@@ -14,7 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 
-
+import { SharedModule } from '../shared/shared.module';
 
 import { 
   ListagemComponent,
@@ -43,7 +43,8 @@ import {
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatCardModule
+    MatCardModule,
+    SharedModule
   ],
   declarations: [
     ListagemComponent,

@@ -23,6 +23,7 @@ import {
   FuncionarioRoutingModule }
 from './funcionario';
 
+import { AdminModule } from './admin';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ from './funcionario';
     CadastroPfRoutingModule,
     FuncionarioModule,
     FuncionarioRoutingModule,
+    AdminModule,
 
     /* O AppRoutingModule deve ser o último dos imports, 
     pois ele é responsável por carregar todas as rodas
