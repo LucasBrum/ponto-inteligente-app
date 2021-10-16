@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { DataSource } from "@angular/cdk/collections";
-import { MatTableDataSource } from '@angular/material/table';
-import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
-import {MatSortModule, MatSort} from '@angular/material/sort';
 import { Observable} from "rxjs/Observable";
-import  'rxjs/add/observable/of';
+import { DataSource } from "@angular/cdk/collections";
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSortModule, MatSort, Sort } from '@angular/material/sort';
+import { PageEvent, MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 
 import { LancamentoService, Lancamento } from "src/app/shared";
 
+import  'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-listagem',
@@ -18,6 +19,9 @@ import { LancamentoService, Lancamento } from "src/app/shared";
 export class ListagemComponent implements OnInit {
   dataSource: MatTableDataSource<Lancamento>;
   colunas: string[] = ['data', 'tipo', 'localizacao'];
+
+  @ViewChild(MatSort, { static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
       private lancamentoService: LancamentoService,
@@ -30,6 +34,8 @@ export class ListagemComponent implements OnInit {
               data => {
                   const lancamentos = data['data'] as Lancamento[];
                   this.dataSource = new MatTableDataSource<Lancamento>(lancamentos)
+                  this.dataSource.sort = this.sort;
+                  this.dataSource.paginator = this.paginator;
               },
               err => {
                   const msg: string = "Erro obtendo  lançamentos.";
