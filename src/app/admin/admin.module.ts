@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CadastroComponent, AtualizacaoComponent, ListagemComponent, AdminComponent } from './components';
+import { CadastroComponent, AtualizacaoComponent, ListagemComponent, AdminComponent, ConfirmarDialog } from './components';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
@@ -25,10 +25,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SharedModule } from '../shared/shared.module';
 
+import { AdminGuard } from './services';
+
 import { 
   HttpUtilService, 
   LancamentoService,
-  PtBrMatPaginatorIntl
+  PtBrMatPaginatorIntl,
+  FuncionarioService
 } from '../shared';
 
 
@@ -37,7 +40,8 @@ import {
     CadastroComponent,
     AtualizacaoComponent,
     ListagemComponent,
-    AdminComponent
+    AdminComponent,
+    ConfirmarDialog
   ],
   imports: [
     CommonModule,
@@ -65,8 +69,11 @@ import {
     LancamentoService,
     HttpUtilService,
     MatPaginatorIntl,
+    FuncionarioService,
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    { provide: MatPaginatorIntl, useClass: PtBrMatPaginatorIntl }
+    { provide: MatPaginatorIntl, useClass: PtBrMatPaginatorIntl },
+    AdminGuard
   ],
+  entryComponents: [ ConfirmarDialog ]
 })
 export class AdminModule { }
