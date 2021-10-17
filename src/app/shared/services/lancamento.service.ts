@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpUtilService } from './http-util.service';
 import { environment as env } from 'src/environments/environment';
 import { Lancamento } from '..';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 @Injectable()
 export class LancamentoService {
@@ -42,5 +43,19 @@ export class LancamentoService {
         this.httpUtil.headers()
       );
   }
+
+  listarLancamentosPorFuncionario(
+    funcionarioId: string,
+    pagina: number,
+    ordem: string,
+    direcao: string): Observable<any> {
+
+      const url: string = env.baseApiUrl + this.PATH + this.PATH_LANCAMENTOS.replace('{funcionarioId}', funcionarioId);
+
+      const params: string = '?pag=' + pagina + '&ord=' + ordem + '&dir=' + direcao;
+
+      return this.http.get(url + params, this.httpUtil.headers());
+      
+    }
   
 }
